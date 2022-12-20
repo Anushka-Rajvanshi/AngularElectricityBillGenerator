@@ -32,12 +32,10 @@ export class BillServiceService {
       .pipe(delay(5000));
   }
 
-  getAllBillsAdmin(): Observable<Bill[]> {
-    return this.http
-      .get<Bill[]>(
-        'http://localhost:8080/admin/getBills?userName=admin&password=admin'
-      )
-      .pipe(delay(5000));
+  getAllBillsAdmin(userName: string, password: string): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      `http://localhost:8080/admin/getBills?userName=${userName}&password=${password}`
+    );
   }
 
   getBillsByMonthAdmin(): Observable<Bill[]> {
