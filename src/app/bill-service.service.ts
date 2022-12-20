@@ -10,26 +10,26 @@ import { Consumer } from './consumer';
 export class BillServiceService {
   constructor(private http: HttpClient) {}
 
-  getAllBillsConsumer(): Observable<Bill[]> {
-    return this.http
-      .get<Bill[]>('http://localhost:8080/consumer/getAllBills?consumerId=1')
-      .pipe(delay(5000));
+  getAllBillsConsumer(consumerId: number): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      `http://localhost:8080/consumer/getAllBills?consumerId=${consumerId}`
+    );
   }
 
-  getBillsByMonthConsumer(): Observable<Bill[]> {
-    return this.http
-      .get<Bill[]>(
-        'http://localhost:8080/consumer/getBillsByMonth?consumerId=1&month=jan&year=2022'
-      )
-      .pipe(delay(5000));
+  getBillsByMonthConsumer(
+    consumerId: number,
+    month: string,
+    year: number
+  ): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      `http://localhost:8080/consumer/getBillsByMonth?consumerId=${consumerId}&month=${month}&year=${year}`
+    );
   }
 
-  getBillsByYearConsumer(): Observable<Bill[]> {
-    return this.http
-      .get<Bill[]>(
-        'http://localhost:8080/consumer/getBillsByYear?consumerId=1&year=2022'
-      )
-      .pipe(delay(5000));
+  getBillsByYearConsumer(consumerId: number, year: number): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      `http://localhost:8080/consumer/getBillsByYear?consumerId=${consumerId}&year=${year}`
+    );
   }
 
   getAllBillsAdmin(userName: string, password: string): Observable<Bill[]> {
@@ -38,36 +38,45 @@ export class BillServiceService {
     );
   }
 
-  getBillsByMonthAdmin(): Observable<Bill[]> {
-    return this.http
-      .get<Bill[]>(
-        'http://localhost:8080/admin/getBillsByMonth?userName=admin&password=admin&month=jan&year=2022'
-      )
-      .pipe(delay(5000));
+  getBillsByMonthAdmin(
+    userName: string,
+    password: string,
+    month: string,
+    year: number
+  ): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      `http://localhost:8080/admin/getBillsByMonth?userName=${userName}&password=${password}&month=${month}&year=${year}`
+    );
   }
 
-  getBillsByYearAdmin(): Observable<Bill[]> {
-    return this.http
-      .get<Bill[]>(
-        'http://localhost:8080/admin/getBillsByYear?userName=admin&password=admin&year=2022'
-      )
-      .pipe(delay(5000));
+  getBillsByYearAdmin(
+    userName: string,
+    password: string,
+    year: number
+  ): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      `http://localhost:8080/admin/getBillsByYear?userName=${userName}&password=${password}&year=${year}`
+    );
   }
 
-  getBillsByAreaAdmin(): Observable<Bill[]> {
-    return this.http
-      .get<Bill[]>(
-        'http://localhost:8080/admin/getBillsByArea?userName=admin&password=admin&area=anna nagar'
-      )
-      .pipe(delay(5000));
+  getBillsByAreaAdmin(
+    userName: string,
+    password: string,
+    area: string
+  ): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      `http://localhost:8080/admin/getBillsByArea?userName=${userName}&password=${password}&area=${area}`
+    );
   }
 
-  getBillsByCityAdmin(): Observable<Bill[]> {
-    return this.http
-      .get<Bill[]>(
-        'http://localhost:8080/admin/getBillsByCity??userName=admin&password=admin&city=chennai'
-      )
-      .pipe(delay(5000));
+  getBillsByCityAdmin(
+    userName: string,
+    password: string,
+    city: string
+  ): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      `http://localhost:8080/admin/getBillsByCity?userName=${userName}&password=${password}&city=${city}`
+    );
   }
 
   // addStudent():Observable<Consumer>{

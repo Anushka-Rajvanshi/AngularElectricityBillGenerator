@@ -6,13 +6,21 @@
   method="get"
   [class.hidden]="isHidden"
 >
+  <label for="username">Username: </label>
   <input
     type="text"
     id="username"
-    name="userName"
-    formControlName="userName"
+    name="username"
+    formControlName="username"
     placeholder="Enter admin username"
   />
+  <span
+    style="color: red"
+    *ngIf="getUserName && getUserName.invalid && getUserName.touched"
+    >Username Required!!</span
+  >
+  <br />
+  <label for="password">Password: </label>
   <input
     type="password"
     id="password"
@@ -20,7 +28,14 @@
     formControlName="password"
     placeholder="Enter admin password"
   />
-  <button type="submit">Submit</button>
+  <span
+    style="color: red"
+    *ngIf="getPassword && getPassword.invalid && getPassword.touched"
+    >Password Required!!
+  </span>
+  <div>
+    <button [disabled]="userForm.invalid" type="submit">Submit</button>
+  </div>
 </form>
 <div class="result" [class.hidden]="!isHidden">
   <div *ngIf="checkBillsStatus(); else noResultBlock">
