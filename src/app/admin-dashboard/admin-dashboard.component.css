@@ -2,10 +2,12 @@
   padding: 10px 40px;
   width: 60%;
   margin: 0 auto;
-  background-color: aqua;
+  background-color: #b0f7f2;
+  border-radius: 20px;
 }
 .heading-admin {
   text-align: center;
+  color: #0f4736;
 }
 
 ol {
@@ -13,6 +15,8 @@ ol {
   list-style: none;
   padding: 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  width: 50%;
+  margin: 0 auto;
 }
 
 ol a {

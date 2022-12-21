@@ -15,7 +15,6 @@ import { ConsumerGetBillsByMonthFormComponent } from './consumer-get-bills-by-mo
 import { ConsumerGetAllBillsFormComponent } from './consumer-get-all-bills-form/consumer-get-all-bills-form.component';
 import { ConsumerRegistrationFormComponent } from './consumer-registration-form/consumer-registration-form.component';
 import { AdminAddUnitsFormComponent } from './admin-add-units-form/admin-add-units-form.component';
-import { ResultComponent } from './result/result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -34,7 +33,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ConsumerGetAllBillsFormComponent,
     ConsumerRegistrationFormComponent,
     AdminAddUnitsFormComponent,
-    ResultComponent,
   ],
   imports: [
     BrowserModule,

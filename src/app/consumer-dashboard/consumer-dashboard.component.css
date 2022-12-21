@@ -2,16 +2,20 @@
   padding: 10px 40px;
   width: 60%;
   margin: 0 auto;
-  background-color: aqua;
+  background-color: #8cd6ff;
+  border-radius: 20px;
 }
 .consumer-dash h1 {
   text-align: center;
+  color: #13054d;
 }
 ol {
   counter-reset: li;
   list-style: none;
   padding: 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  width: 50%;
+  margin: 0 auto;
 }
 
 ol a {
@@ -27,7 +31,7 @@ ol a {
 }
 
 ol a:hover {
-  background: #e9e4e0;
+  background: #b7cbfb;
 }
 ol a:hover:before {
   transform: rotate(360deg);

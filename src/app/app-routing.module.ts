@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminAddUnitsFormComponent } from './admin-add-units-form/admin-add-units-form.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminGetAllBillsFormComponent } from './admin-get-all-bills-form/admin-get-all-bills-form.component';
 import { AdminGetBillsByAreaFormComponent } from './admin-get-bills-by-area-form/admin-get-bills-by-area-form.component';
@@ -10,7 +11,7 @@ import { ConsumerDashboardComponent } from './consumer-dashboard/consumer-dashbo
 import { ConsumerGetAllBillsFormComponent } from './consumer-get-all-bills-form/consumer-get-all-bills-form.component';
 import { ConsumerGetBillsByMonthFormComponent } from './consumer-get-bills-by-month-form/consumer-get-bills-by-month-form.component';
 import { ConsumerGetBillsByYearFormComponent } from './consumer-get-bills-by-year-form/consumer-get-bills-by-year-form.component';
-import { ResultComponent } from './result/result.component';
+import { ConsumerRegistrationFormComponent } from './consumer-registration-form/consumer-registration-form.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
     path: 'admin-dashboard/getBillsByCity',
     component: AdminGetBillsByCityFormComponent,
   },
+  {
+    path: 'admin-dashboard/addUnitsConsumed',
+    component: AdminAddUnitsFormComponent,
+  },
   { path: 'consumer-dashboard', component: ConsumerDashboardComponent },
   {
     path: 'consumer-dashboard/getAllBills',
@@ -49,6 +54,10 @@ const routes: Routes = [
   {
     path: 'consumer-dashboard/getBillsByMonth',
     component: ConsumerGetBillsByMonthFormComponent,
+  },
+  {
+    path: 'consumer-dashboard/registerConsumer',
+    component: ConsumerRegistrationFormComponent,
   },
 ];
 

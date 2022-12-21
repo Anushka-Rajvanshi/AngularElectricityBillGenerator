@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Bill } from './bill';
 import { Consumer } from './consumer';
@@ -79,11 +79,28 @@ export class BillServiceService {
     );
   }
 
-  // addStudent():Observable<Consumer>{
-  //     return this.http.post<Consumer>("http://localhost:8080/api/students",{
-  //       "id": "20",
-  //       "name": "Ramesh",
-  //       "age": "60"
-  //     });
-  // }
+  addUnitsConsumed(
+    userName: string,
+    password: string,
+    month: string,
+    year: number,
+    consumerId: number,
+    unitsConsumed: number
+  ): Observable<Bill> {
+    // const headers = { 'content-type': 'application/json' };
+    return this.http.post<Bill>(
+      `http://localhost:8080/admin/addUnits?userName=${userName}&password=${password}&month=${month}&year=${year}&consumerId=${consumerId}&unitsConsumed=${unitsConsumed}`,
+      ''
+    );
+  }
+  registerConsumer(consumer: Consumer): Observable<Consumer> {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(consumer);
+    console.log(body);
+    return this.http.post<Consumer>(
+      'http://localhost:8080/consumer/register',
+      body,
+      { headers: headers }
+    );
+  }
 }
