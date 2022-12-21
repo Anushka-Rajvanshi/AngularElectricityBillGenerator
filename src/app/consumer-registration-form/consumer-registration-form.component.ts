@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { BillServiceService } from '../bill-service.service';
 import { Consumer } from '../consumer';
 
@@ -11,8 +13,11 @@ import { Consumer } from '../consumer';
 export class ConsumerRegistrationFormComponent {
   consumer: Consumer = new Consumer(0, '', '', '', '');
   isHidden: boolean = false;
+  errorMsg!: string;
   checkStatus() {
-    return this.consumer.consumerId != 0;
+    return (
+      this.consumer.consumerId != 0 && this.consumer.consumerId != undefined
+    );
   }
   consumerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -30,7 +35,15 @@ export class ConsumerRegistrationFormComponent {
     this.consumer.connectionType = data.ctype;
     this.billService
       .registerConsumer(this.consumer)
-      .subscribe((consumer) => (this.consumer = consumer));
+      .pipe(
+        catchError((error) => {
+          this.errorMsg = `Error: ${error.error.message}`;
+          return of([]);
+        })
+      )
+      .subscribe(
+        (consumer) => (this.consumer = consumer as unknown as Consumer)
+      );
     this.isHidden = true;
   }
   get getName() {

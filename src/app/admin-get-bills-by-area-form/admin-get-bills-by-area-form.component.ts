@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Bill } from '../bill';
 import { BillServiceService } from '../bill-service.service';
 
@@ -14,6 +16,7 @@ export class AdminGetBillsByAreaFormComponent {
   area!: string;
   Bills: Bill[] = [];
   isHidden: boolean = false;
+  errorMsg!: string;
   checkBillsStatus() {
     return this.Bills.length != 0;
   }
@@ -31,6 +34,12 @@ export class AdminGetBillsByAreaFormComponent {
     this.area = data.area;
     this.billService
       .getBillsByAreaAdmin(this.AdminUserName, this.AdminPassword, this.area)
+      .pipe(
+        catchError((error) => {
+          this.errorMsg = `Error: ${error.error.message}`;
+          return of([]);
+        })
+      )
       .subscribe((bills) => (this.Bills = bills));
     this.isHidden = true;
   }

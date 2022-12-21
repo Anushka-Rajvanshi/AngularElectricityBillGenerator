@@ -95,8 +95,10 @@
     <h3>Units Added Successfully</h3>
   </div>
   <ng-template #noResultBlock>
-    <h2>There was some error adding units. Please check the values again.</h2>
+    <h2>{{ errorMsg }}</h2>
   </ng-template>
   <br />
-  <button (click)="onBack()" class="back-btn">Back</button>
+  <div class="wrap">
+    <button (click)="onBack()" class="back-button">Back</button>
+  </div>
 </div>

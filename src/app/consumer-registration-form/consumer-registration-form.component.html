@@ -56,14 +56,18 @@
       >
       <br />
 
-      <label for="ctype">Connection Type </label>
-      <input
-        type="text"
-        id="ctype"
+      <label for="ctype"> Connection Type </label>
+      <select
+        class="selectDiv"
         name="ctype"
+        id="ctype"
         formControlName="ctype"
-        placeholder="Enter your connection type"
-      />
+        aria-placeholder="Select Connection Type"
+      >
+        <option value="">Select Conncetion Type</option>
+        <option value="domestic">Domestic</option>
+        <option value="commercial">Commercial</option>
+      </select>
       <span
         style="color: red"
         *ngIf="getType && getType.invalid && getType.touched"
@@ -89,7 +93,9 @@
     </p>
   </div>
   <ng-template #noResultBlock>
-    <h2>Registration Unsuccessful :(</h2></ng-template
+    <h2>Registration Unsuccessful :( <br />{{ errorMsg }}</h2></ng-template
   >
-  <button (click)="onBack()">Back</button>
+  <div class="wrap">
+    <button (click)="onBack()" class="back-button">Back</button>
+  </div>
 </div>

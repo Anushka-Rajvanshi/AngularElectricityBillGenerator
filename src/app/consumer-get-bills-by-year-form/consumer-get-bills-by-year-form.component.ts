@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Bill } from '../bill';
 import { BillServiceService } from '../bill-service.service';
 
@@ -13,6 +15,7 @@ export class ConsumerGetBillsByYearFormComponent {
   year!: number;
   Bills: Bill[] = [];
   isHidden: boolean = false;
+  errorMsg!: string;
   checkBillsStatus() {
     return this.Bills.length != 0;
   }
@@ -28,6 +31,12 @@ export class ConsumerGetBillsByYearFormComponent {
     this.year = data.year;
     this.billService
       .getBillsByYearConsumer(this.consumerId, this.year)
+      .pipe(
+        catchError((error) => {
+          this.errorMsg = `Error: ${error.error.message}`;
+          return of([]);
+        })
+      )
       .subscribe((bills) => (this.Bills = bills));
     this.isHidden = true;
   }

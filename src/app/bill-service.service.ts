@@ -87,7 +87,6 @@ export class BillServiceService {
     consumerId: number,
     unitsConsumed: number
   ): Observable<Bill> {
-    // const headers = { 'content-type': 'application/json' };
     return this.http.post<Bill>(
       `http://localhost:8080/admin/addUnits?userName=${userName}&password=${password}&month=${month}&year=${year}&consumerId=${consumerId}&unitsConsumed=${unitsConsumed}`,
       ''

@@ -10,6 +10,8 @@
 // }
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Bill } from '../bill';
 import { BillServiceService } from '../bill-service.service';
 
@@ -23,6 +25,7 @@ export class ConsumerGetBillsByMonthFormComponent {
   year!: number;
   consumerId!: number;
   isHidden: boolean = false;
+  errorMsg!: string;
   Bills: Bill[] = [];
 
   checkBillsStatus() {
@@ -41,6 +44,12 @@ export class ConsumerGetBillsByMonthFormComponent {
     this.consumerId = data.consumerId;
     this.billService
       .getBillsByMonthConsumer(this.consumerId, this.month, this.year)
+      .pipe(
+        catchError((error) => {
+          this.errorMsg = `Error: ${error.error.message}`;
+          return of([]);
+        })
+      )
       .subscribe((bills) => (this.Bills = bills));
     this.isHidden = true;
   }

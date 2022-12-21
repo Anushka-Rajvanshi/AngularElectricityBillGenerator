@@ -65,10 +65,14 @@
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr class="table-dark">
-            <th scope="col">Bill Id</th>
-            <th scope="col">Consumer Id</th>
-            <th scope="col">Month</th>
-            <th scope="col">Year</th>
+            <th scope="col">billId</th>
+            <th scope="col">Consumer ID</th>
+            <th scope="col">Consumer Name</th>
+            <th scope="col">Area</th>
+            <th scope="col">City</th>
+            <th scope="col">Connection Type</th>
+            <th scope="col">month</th>
+            <th scope="col">year</th>
             <th scope="col">Units Consumed</th>
             <th scope="col">Total Amount</th>
           </tr>
@@ -77,6 +81,10 @@
           <tr *ngFor="let bill of Bills" class="table-info">
             <td>{{ bill.billId }}</td>
             <td>{{ bill.consumerId.consumerId }}</td>
+            <td>{{ bill.consumerId.consumerName }}</td>
+            <td>{{ bill.consumerId.area }}</td>
+            <td>{{ bill.consumerId.city }}</td>
+            <td>{{ bill.consumerId.connectionType }}</td>
             <td>{{ bill.month }}</td>
             <td>{{ bill.year }}</td>
             <td>{{ bill.unitsConsumed }}</td>
@@ -86,6 +94,10 @@
       </table>
     </div>
   </div>
-  <ng-template #noResultBlock><h2>No Bills Found!</h2></ng-template>
-  <button (click)="onBack()" class="backbutton">Back</button>
+  <ng-template #noResultBlock
+    ><h2>{{ errorMsg }}</h2></ng-template
+  >
+  <div class="wrap">
+    <button (click)="onBack()" class="back-button">Back</button>
+  </div>
 </div>
